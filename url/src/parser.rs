@@ -176,8 +176,9 @@ impl SchemeType {
 impl<T: AsRef<str>> From<T> for SchemeType {
     fn from(s: T) -> Self {
         match s.as_ref() {
-            "http" | "https" | "ws" | "wss" | "ftp" => Self::SpecialNotFile,
-            "file" => Self::File,
+            "tcp" | "tcp+tls" | "tor" | "tor+tls" | "socks5" | "socks5+tls" | "nym" | "nym+tls"
+            | "http" | "https" | "ws" | "wss" | "ftp" => Self::SpecialNotFile,
+            "file" => SchemeType::File,
             _ => Self::NotSpecial,
         }
     }
